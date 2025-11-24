@@ -9,7 +9,7 @@ import { JournalCard } from './JournalCard'
 import { ReadingCard } from './ReadingCard'
 import { QuickNoteCard } from './QuickNoteCard'
 import { Section } from './Section'
-import { Loading, LoadingSkeleton } from './Loading'
+import { LoadingSkeleton } from './Loading'
 import { ErrorState, EmptyState } from './ErrorState'
 import { 
   CheckSquare, 
@@ -60,10 +60,13 @@ export function Dashboard() {
     await fetchData()
   }
 
-  const filterBySearch = <T extends { title: string }>(items: T[]): T[] => {
+  const filterBySearch = <T extends { title?: string; name?: string }>(items: T[]): T[] => {
     if (!searchQuery.trim()) return items
     const query = searchQuery.toLowerCase()
-    return items.filter(item => item.title.toLowerCase().includes(query))
+    return items.filter(item => {
+      const searchText = (item.title || item.name || '').toLowerCase()
+      return searchText.includes(query)
+    })
   }
 
   if (loading) {
@@ -94,7 +97,7 @@ export function Dashboard() {
     journals = [],
     readingList = [],
     quickNotes = [],
-    pages = [],
+    pages: _pages = [],
   } = data
 
   return (
@@ -106,7 +109,7 @@ export function Dashboard() {
             Welcome back{session?.user?.name ? `, ${session.user.name}` : ''}!
           </h1>
           <p className="text-notion-gray mt-1">
-            Here's everything from your Notion workspace
+            Here&apos;s everything from your Notion workspace
           </p>
         </div>
         

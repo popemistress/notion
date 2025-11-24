@@ -1,5 +1,3 @@
-import { PageObjectResponse, DatabaseObjectResponse } from '@notionhq/client/build/src/api-endpoints'
-
 // User session type
 export interface NotionUser {
   access_token: string

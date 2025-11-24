@@ -1,5 +1,4 @@
 import { NextAuthOptions } from 'next-auth'
-import { JWT } from 'next-auth/jwt'
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -20,7 +19,7 @@ export const authOptions: NextAuthOptions = {
       },
       token: {
         url: 'https://api.notion.com/v1/oauth/token',
-        async request({ client, params, checks, provider }) {
+        async request({ client: _client, params, checks: _checks, provider: _provider }) {
           const basicAuth = Buffer.from(
             `${process.env.NOTION_CLIENT_ID}:${process.env.NOTION_CLIENT_SECRET}`
           ).toString('base64')

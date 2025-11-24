@@ -1,6 +1,6 @@
 import React from 'react'
 import { QuickNote } from '@/types'
-import { formatDate, getRelativeTime } from '@/lib/utils'
+import { getRelativeTime } from '@/lib/utils'
 import { StickyNote, ExternalLink } from 'lucide-react'
 
 interface QuickNoteCardProps {

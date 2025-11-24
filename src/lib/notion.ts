@@ -2,7 +2,6 @@ import { Client } from '@notionhq/client'
 import {
   PageObjectResponse,
   DatabaseObjectResponse,
-  QueryDatabaseResponse,
 } from '@notionhq/client/build/src/api-endpoints'
 import {
   NotionPage,

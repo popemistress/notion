@@ -4,7 +4,7 @@ import { authOptions } from '@/lib/auth'
 import { NotionService } from '@/lib/notion'
 import { DashboardData } from '@/types'
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     // Get the session
     const session = await getServerSession(authOptions)
